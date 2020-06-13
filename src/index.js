@@ -1,5 +1,6 @@
 import './styles.css';
 import api from './apiService.js';
+import dElements from './template/result.hbs';
 
 import { alert, defaultModules } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
@@ -9,10 +10,7 @@ import '@pnotify/mobile/dist/PNotifyMobile.css';
 const refs = {
   input: document.querySelector('.input'),
   ulResult: document.querySelector('.gallery'),
-  likes: document.querySelector('#likes'),
-  views: document.querySelector('#views'),
-  comments: document.querySelector('#comments'),
-  downloads: document.querySelector('#downloads'),
+  items: document.querySelector('.photo-card'),
 };
 
 const debounce = require('lodash.debounce');
@@ -32,14 +30,20 @@ function getData(data) {
   } else {
     onError();
   }
+}
 
-  function pageIcrement() {
-    let pageNumber = 1;
-    const step = 1;
+function showPhotos(array) {
+  const html = dElements(array);
 
-    if (*) {
-      pageNumber += step;
-    }
+  refs.items.insertAdjacentHTML('beforeend', html);
+}
+
+function pageIcrement() {
+  let pageNumber = 1;
+  const step = 1;
+
+  if (aaa) {
+    pageNumber += step;
   }
 }
 
