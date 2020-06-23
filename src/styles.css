@@ -16,5 +16,90 @@ body {
   /*
    * CSS image reference example.
    */
-  background-image: url('./images/bubbles.png');
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  background-color: #2f3640;
+}
+
+.box {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  color: #58595b;
+  background-color: #c9ffbf;
+  margin: 0 auto;
+  /* padding: 10px 40px 10px 40px; */
+}
+
+.search-form {
+  padding-bottom: 20px;
+}
+
+.gallery {
+  width: 500px;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.galerry-item {
+  flex-direction: row;
+  padding-bottom: 40px;
+}
+
+.img-container {
+  height: 370px;
+  padding-bottom: 30px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stats-item {
+  display: none;
+  margin-bottom: 30px;
+}
+
+.galerry-item:hover .stats-item {
+  display: block;
+  content: '';
+}
+
+.small-image {
+  width: 100%;
+  height: 100%;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more_button {
+  color: #58595b;
+  background-color: #c9ffbf;
+}
+
+/* .load-more:hover .load-more_button {
+  display: block;
+  content: '';
+} */
+
+.lightbox.is-open .lightbox__content {
+  transform: scale(1);
 }
