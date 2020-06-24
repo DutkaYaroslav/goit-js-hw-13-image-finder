@@ -1,6 +1,8 @@
 import './styles.css';
 import api from './apiService.js';
 import dElements from './template/result.hbs';
+import * as basicLightbox from 'basiclightbox'
+import '../node_modules/basiclightbox/src/styles/main.scss';
 
 import {
   alert,
@@ -12,13 +14,10 @@ import '@pnotify/mobile/dist/PNotifyMobile.css';
 
 const refs = {
   input: document.querySelector('#search-form'),
-  // inputInput: document.querySelector('.input'),
   ulResult: document.querySelector('.gallery'),
   items: document.querySelector('.photo-card'),
   loadMore: document.querySelector('.load-more_button'),
   image: document.querySelector('.small-image'),
-  isOpen: document.querySelector('.js-lightbox'),
-
 };
 
 refs.input.addEventListener('submit', inputLogic);
@@ -43,18 +42,35 @@ function pageNumber(e) {
   if (refs.loadMore) {
     page += 1;
 
+
     const form = refs.input;
     const input = form.elements.query;
     api(input.value, page, getData);
+
+
   }
 }
 
 function getData(data) {
   if (data.hits.length > 0) {
+    refs.loadMore.classList.remove('hidden');
     showPhotos(data.hits);
   } else {
     onError();
   }
+
+  if (page === 1) {
+    window.scrollBy({
+      top: 0,
+    })
+  } else {
+    window.scrollBy({
+      top: 800,
+      left: 100,
+      behavior: 'smooth'
+    });
+  }
+
 }
 
 function showPhotos(array) {
@@ -69,25 +85,20 @@ function onError(notification) {
   alert('try something else');
 }
 
-// if (refs.input) {
-//   refs.loadMore.elements;
-// }
 
 
-
-
-
+refs.ulResult.addEventListener('click', bigImage)
 
 function bigImage(e) {
-  if (e.target === e.currentTarget) {
+  if (e.target.nodeName !== 'IMG') {
+
     return;
+
   }
-  // e.preventDefault();
-  refs.isOpen.classList.add('is-open');
-  refs.image.src = e.target.largeImageURL;
-  // refs.button.classList.add('lightbox__button');
+  const largeImageURL = e.target.dataset.original
 
-  // console.log(e)
+  const instance = basicLightbox.create(` <img src="${largeImageURL}" width="1280" height="980">
+  `)
+
+  instance.show()
 }
-
-refs.ulResult.addEventListener('click', bigImage);

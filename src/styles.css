@@ -95,11 +95,10 @@ header {
   background-color: #c9ffbf;
 }
 
-/* .load-more:hover .load-more_button {
-  display: block;
-  content: '';
-} */
-
-.lightbox.is-open .lightbox__content {
-  transform: scale(1);
+.hidden {
+  display: none;
 }
+
+/* .lightbox.is-open .lightbox__content {
+  transform: scale(1);
+} */
